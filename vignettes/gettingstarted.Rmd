@@ -576,7 +576,7 @@ The next step is to learn about pixsets, which have their own vignette:
 
 pixsets represent sets of pixels and are all-around quite useful.
 
-After that, you can have a browse around the [website](https://dahtah.github.io/imager/).
+After that, you can have a browse around the [website](https://asgr.github.io/imager/).
 
 # imager functions by theme
 

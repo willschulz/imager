@@ -1,4 +1,3 @@
-[![Linux Build Status](https://travis-ci.org/dahtah/imager.png?branch=master)](https://travis-ci.org/dahtah/imager/)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imager)](https://cran.r-project.org/package=imager)
 [![LGPL licensed](https://img.shields.io/badge/license-LGPL--3-blue.svg)](./LICENSE)
 
@@ -19,7 +18,7 @@ The version of CRAN will often lag the one on github. If you'd like to install t
 Install the devtools package if you haven't already. Run:
 
 ```r
-devtools::install_github("dahtah/imager")
+devtools::install_github("asgr/imager")
 ```
 
 If that doesn't work then you're probably missing a build environment or a library, see below.
@@ -81,7 +80,7 @@ plot(blurred)
 	
 We're much more [sensitive to luminance edges than we are to colour edges](https://en.wikipedia.org/wiki/Chroma_subsampling). 
 
-Documentation is available [here](http://dahtah.github.io/imager/). To get a list of all package functions, run:
+Documentation is available [here](http://asgr.github.io/imager/). To get a list of all package functions, run:
 
 ```r
 ls(pos = "package:imager")
@@ -93,7 +92,7 @@ All images are stored as standard R numeric vectors (i.e., double-precision), me
 (400x300) x (25x120) x 3
 values, corresponding to (space)x(time)x(colour). In addition, each value costs 8 bytes of storage, for a grand total of 8GB of memory.
 
-For out-of-memory processing of videos, see the experimental package [imagerstreams](https://github.com/dahtah/imagerstreams). 
+For out-of-memory processing of videos, see the experimental package [imagerstreams](https://github.com/asgr/imagerstreams). 
 
 
 ## Current status
