@@ -697,12 +697,13 @@ autocrop <- function(im,color=color.at(im,1,1),axes="zyx")
 ##' Use this function to turn parallelisation on or off.
 ##'
 ##' @param mode Either "adaptive","always" or "none". The default is adaptive (parallelisation for large images only).
+##' @param nthreads The number of threads to use when running code in parallel. The default is 1.
 ##' @return NULL (function is used for side effects)
 ##' @author Simon Barthelme
 ##' @examples
 ##' cimg.use.openmp("never") #turn off parallelisation
 ##' @export
-cimg.use.openmp <- function(mode="adaptive")
+cimg.use.openmp <- function(mode="adaptive",nthreads=1)
 {
     if (mode=="never")
         {
@@ -711,10 +712,12 @@ cimg.use.openmp <- function(mode="adaptive")
     else if (mode=="always")
         {
             set_cimg_omp(1)
+            set_omp_num_threads(nthreads)
         }
     else if (mode=="adaptive")
         {
             set_cimg_omp(2)
+            set_omp_num_threads(nthreads)
         }
     else
         {

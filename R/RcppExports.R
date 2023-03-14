@@ -940,6 +940,10 @@ set_cimg_omp <- function(mode) {
     .Call(`_imager_set_cimg_omp`, mode)
 }
 
+set_omp_num_threads <- function(threads) {
+    invisible(.Call(`_imager_set_omp_num_threads`, threads))
+}
+
 has_omp <- function() {
     .Call(`_imager_has_omp`)
 }

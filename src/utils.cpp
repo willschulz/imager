@@ -328,6 +328,16 @@ int set_cimg_omp(int mode)
 }
 
 // [[Rcpp::export]]
+void set_omp_num_threads(int threads)
+{
+#ifdef cimg_use_openmp
+  omp_set_num_threads(threads);
+#else
+  Rcpp::cerr << "No OpenMP support found, ignoring call to set_omp_num_threads" << '\n' ;
+#endif
+}
+
+// [[Rcpp::export]]
 bool has_omp()
 {
 #ifdef cimg_use_openmp
