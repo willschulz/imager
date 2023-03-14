@@ -234,8 +234,10 @@ NumericVector reduce_list2(List x,int summary = 0)
   return wrap(out);
 }
 
-static double _get_median(std::vector<double>::iterator begin, std::vector<double>::iterator end)
+static double _get_median(std::vector<double>::iterator begin, std::vector<double>::iterator end, bool na_rm)
 {
+  if (!na_rm && std::any_of(begin, end, R_IsNA))
+    return NA_REAL;
   auto size = std::distance(begin, end);
   auto n = size / 2;
   std::nth_element(begin, begin + n, end);
@@ -289,7 +291,7 @@ NumericVector reduce_med(List x,bool na_rm=false)
           vec_end++;
         }
       }
-      out(x,y,z,c) = _get_median(vec.begin(), vec_end);
+      out(x,y,z,c) = _get_median(vec.begin(), vec_end, na_rm);
     }
   }
   return wrap(out);
