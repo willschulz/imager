@@ -156,5 +156,5 @@ imsplit(im,"c") \%>\% { parorder(.)[[length(.)]] } \%>\% table
 imsplit,Reduce
 }
 \author{
-Simon Barthelme
+Simon Barthelme & Rodrigo Tobar
 }

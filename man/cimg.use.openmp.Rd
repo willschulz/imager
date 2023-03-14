@@ -4,10 +4,11 @@
 \alias{cimg.use.openmp}
 \title{Control CImg's parallelisation}
 \usage{
-cimg.use.openmp(mode = "adaptive")
+cimg.use.openmp(mode = "adaptive", nthreads = 1)
 }
 \arguments{
 \item{mode}{Either "adaptive","always" or "none". The default is adaptive (parallelisation for large images only).}
+\item{nthreads}{Integer scalar; number of parallel threads to use.}
 }
 \value{
 NULL (function is used for side effects)
@@ -20,5 +21,5 @@ Use this function to turn parallelisation on or off.
 cimg.use.openmp("never") #turn off parallelisation
 }
 \author{
-Simon Barthelme
+Simon Barthelme & Rodrigo Tobar
 }

@@ -8,3 +8,5 @@ m4
 joss
 LICENSE
 README.md
+^.*\.Rproj$
+^\.Rproj\.user$
