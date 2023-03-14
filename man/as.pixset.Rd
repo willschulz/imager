@@ -24,14 +24,11 @@ Methods to convert various objects to pixsets
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{as.pixset(cimg)}: convert cimg to pixset
+\item \code{cimg}: convert cimg to pixset
 
+\item \code{pixset}: convert pixset to cimg
 }}
-\section{Functions}{
-\itemize{
-\item \code{as.cimg(pixset)}: convert pixset to cimg
 
-}}
 \examples{
 #When converting an image to a pixset, the default is to include all pixels with non-zero value 
 as.pixset(boats)
