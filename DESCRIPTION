@@ -20,7 +20,7 @@ Imports:
     Rcpp (>= 0.11.5),methods,stringr,png,jpeg,readbitmap,grDevices,purrr,downloader,igraph
 Depends:
     R (>= 2.10.0),magrittr
-URL: http://asgr.github.io/imager/, https://github.com/asgr/imager/
+URL: https://asgr.github.io/imager/, https://github.com/asgr/imager/
 BugReports: https://github.com/asgr/imager/issues
 SystemRequirements: fftw3,libtiff,X11
 LinkingTo: Rcpp
