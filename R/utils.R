@@ -720,7 +720,7 @@ cimg.use.openmp <- function(mode="adaptive")
         {
             stop("Unknown mode, should be one of 'never','adaptive', or 'always'")
         }
-    NULL
+    return(invisible(NULL))
 }
 
 ##' Return contours of image/pixset
