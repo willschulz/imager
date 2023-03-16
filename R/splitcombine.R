@@ -145,7 +145,10 @@ imsplit.recur <- function(im,spl,nb=-1)
 ##' These functions take a list of images and combine them by adding, multiplying, taking the parallel min or max, etc.
 ##' The max. in absolute value of (x1,x2) is defined as x1 if (|x1| > |x2|), x2 otherwise. It's useful for example in getting the most extreme value while keeping the sign. 
 ##' "parsort","parrank" and "parorder" aren't really reductions because they return a list of the same size. They perform a pixel-wise sort (resp. order and rank) across the list.
+##' 
 ##' parvar returns an unbiased estimate of the variance (as in the base var function). parsd returns the square root of parvar. 
+##' 
+##' To correctly use multiple threads users should set \option{nthreads} in \code{\link{cimg.use.openmp}}. You also need to be careful that this is not higher than the value in the system environment variable OMP_THREAD_LIMIT (this can be checked with Sys.getenv('OMP_THREAD_LIMIT')). The OMP_THREAD_LIMIT thread limit usually needs to be correctly set before launching R, so using Sys.setenv once a session has started is not certain to work.
 ##' @name imager.combine
 ##' @param x a list of images
 ##' @param na.rm ignore NAs (default FALSE)
@@ -246,7 +249,7 @@ parmin <- function(x,na.rm=FALSE) check.reduce(x) %>% reduce_minmax(na_rm=na.rm,
 ##' @export
 enorm <- function(x) check.reduce(x) %>% reduce_list(5)
 
-##' @describeIn imager.combine Median
+##' @describeIn imager.combine Parallel Median over images
 ##' @export
 parmed <- function(x,na.rm=FALSE) check.reduce(x) %>% reduce_med(na_rm=na.rm)
 

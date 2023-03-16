@@ -15,8 +15,10 @@ cimg.use.openmp(mode = "adaptive", nthreads = 1)
 NULL (function is used for side effects)
 }
 \description{
-On supported architectures CImg can parallelise many operations using OpenMP.
-Use this function to turn parallelisation on or off.
+On supported architectures CImg can parallelise many operations using OpenMP (e.g. \code{\link{imager.combine}}). Use this function to turn parallelisation on or off.
+}
+\details{
+You need to be careful that \option{nthreads} is not higher than the value in the system environment variable OMP_THREAD_LIMIT (this can be checked with Sys.getenv('OMP_THREAD_LIMIT')). The OMP_THREAD_LIMIT thread limit usually needs to be correctly set before launching R, so using Sys.setenv once a session has started is not certain to work.
 }
 \examples{
 cimg.use.openmp("never") #turn off parallelisation

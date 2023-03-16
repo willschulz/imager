@@ -31,3 +31,4 @@ Suggests:
     rmarkdown,ggplot2,dplyr,scales,
     testthat,raster,spatstat.geom,magick,Cairo
 VignetteBuilder: knitr
+Encoding: UTF-8
