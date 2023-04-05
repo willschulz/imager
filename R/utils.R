@@ -694,31 +694,48 @@ autocrop <- function(im,color=color.at(im,1,1),axes="zyx")
 ##' Control CImg's parallelisation
 ##'
 ##' On supported architectures CImg can parallelise many operations using OpenMP (e.g. \code{\link{imager.combine}}). Use this function to turn parallelisation on or off.
-##' 
+##'
 ##' You need to be careful that \option{nthreads} is not higher than the value in the system environment variable OMP_THREAD_LIMIT (this can be checked with Sys.getenv('OMP_THREAD_LIMIT')). The OMP_THREAD_LIMIT thread limit usually needs to be correctly set before launching R, so using Sys.setenv once a session has started is not certain to work.
 ##'
+##' @name cimg.openmp
 ##' @param mode Either "adaptive","always" or "none". The default is adaptive (parallelisation for large images only).
-##' @param nthreads The number of threads to use when running code in parallel. The default is 1.
+##' @param nthreads The number of OpenMP threads that imager should use. The default is 1. Set to 0 to get no more than 2, based on OpenMP environment variables.
+##' @param verbose Whether to output information about the threads being set.
 ##' @return NULL (function is used for side effects)
 ##' @author Simon Barthelme
 ##' @examples
 ##' cimg.use.openmp("never") #turn off parallelisation
 ##' @export
-cimg.use.openmp <- function(mode="adaptive",nthreads=1)
+cimg.use.openmp <- function(mode="adaptive", nthreads=1, verbose=FALSE)
 {
+    if (!has_omp())
+    {
+        if (verbose) message("imager has not OpenMP support, ignoring request to set threads.")
+        return (NULL)
+    }
+    if (nthreads == 0)
+    {
+        omp_thread_limit <- as.integer(Sys.getenv("OMP_THREAD_LIMIT"))
+        omp_num_threads <- as.integer(Sys.getenv("OMP_NUM_THREADS"))
+        nthreads <- min(stats::na.omit(c(2, omp_thread_limit, omp_num_threads)))
+        if (verbose) message("Limiting imager to ", nthreads ," OpenMP threads See ?cimg.use.openmp")
+    }
     if (mode=="never")
         {
             set_cimg_omp(0)
+            if (verbose) message("imager configured to never use OpenMP")
         }
     else if (mode=="always")
         {
             set_cimg_omp(1)
             set_omp_num_threads(nthreads)
+            if (verbose) message("imager configured to always use OpenMP with ", nthreads ," threads.")
         }
     else if (mode=="adaptive")
         {
             set_cimg_omp(2)
             set_omp_num_threads(nthreads)
+            if (verbose) message("imager configured to adaptively use OpenMP with ", nthreads ," threads.")
         }
     else
         {
@@ -726,6 +743,10 @@ cimg.use.openmp <- function(mode="adaptive",nthreads=1)
         }
     NULL
 }
+
+##' @describeIn cimg.openmp Limit OpenMP thread count to no more than 2, based on OpenMP environment variables.
+##' @export
+cimg.limit.openmp <- function() cimg.use.openmp(nthreads=0, verbose=TRUE)
 
 ##' Return contours of image/pixset
 ##'
