@@ -21,6 +21,11 @@ If you've already gone through the "Getting started" vignette, you know about im
 ```{r}
 library(imager)
 ```
+
+```{r include=FALSE}
+cimg.limit.openmp()
+```
+
 # From images to pixsets and back
 
 A pixset is what you get if you run a test on an image: 

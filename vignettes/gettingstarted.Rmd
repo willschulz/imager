@@ -28,6 +28,10 @@ library(imager)
 plot(boats)
 ```
 
+```{r include=FALSE}
+cimg.limit.openmp()
+```
+
 Note the y axis running downwards: the origin is at the top-left corner, which is the traditional coordinate system for images. **imager** uses this coordinate system consistently. Image data has class "cimg":
 
 ```{r}
