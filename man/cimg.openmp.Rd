@@ -32,6 +32,7 @@ You need to be careful that \option{nthreads} is not higher than the value in th
 
 }}
 \examples{
+\dontshow{cimg.limit.openmp()}
 cimg.use.openmp("never") #turn off parallelisation
 }
 \author{

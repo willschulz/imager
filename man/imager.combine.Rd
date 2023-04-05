@@ -127,6 +127,7 @@ To correctly use multiple threads users should set \option{nthreads} in \code{\l
 
 }}
 \examples{
+\dontshow{cimg.limit.openmp()}
 im1 <- as.cimg(function(x,y) x,50,50)
 im2 <- as.cimg(function(x,y) y,50,50)
 im3 <- as.cimg(function(x,y) cos(x/10),50,50)

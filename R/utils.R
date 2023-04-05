@@ -9,6 +9,7 @@
 ##' @param im an image
 ##' @return an image
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- load.example("parrots") %>% subim(x <= 512)
 ##' layout(t(1:3))
 ##' plot(im,main="Original image")
@@ -44,6 +45,7 @@ periodic.part <- function(im)
 ##' @param inverse If true compute the inverse FFT (default: FALSE)
 ##' @return a list with components "real" (an image) and "imag" (an image), corresponding to the real and imaginary parts of the transform
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##'
 ##' im <- as.cimg(function(x,y) sin(x/5)+cos(x/4)*sin(y/2),128,128)
 ##' ff <- FFT(im)
@@ -82,6 +84,7 @@ FFT <- function(im.real,im.imag,inverse=FALSE)
 ##' For double-scale, triple-scale, etc. uses an anisotropic scaling algorithm described in: \url{http://www.scale2x.it/algorithm.html}. For half-scaling uses what the CImg doc describes as an "optimised filter", see resize_halfXY in CImg.h.
 ##' @seealso resize
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- load.example("parrots")
 ##' imresize(im,1/4) #Quarter size
 ##' map_il(2:4,~ imresize(im,1/.)) %>% imappend("x") %>% plot
@@ -119,6 +122,7 @@ imresize <- function(im,scale=1,interpolation=3)
 #' @param axes Axes considered for the hessian computation, as a character string (e.g "xy" corresponds to d/(dx*dy)). Can be a list of axes. Default: xx,xy,yy
 #' @return an image, or a list of images
 #' @examples
+#' \dontshow{cimg.limit.openmp()}
 #' imhessian(boats,"xy") %>% plot(main="Second-derivative, d/(dx*dy)")
 #' @export
 imhessian <- function(im,axes=c("xx","xy","yy"))
@@ -146,6 +150,7 @@ imhessian <- function(im,axes=c("xx","xy","yy"))
 ##' @param opacity transparency level (default 1)
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- load.example("parrots")
 ##' boats.small <- imresize(boats,.5)
 ##' #I'm aware the result is somewhat ugly
@@ -183,6 +188,7 @@ imdraw <- function(im,sprite,x=1,y=1,z=1,opacity=1)
 ##' @author Simon Barthelme
 ##' @export
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' renorm(0:10)
 ##' renorm(-5:5) #Same as above
 renorm <- function(x,min=0,max=255)
@@ -238,6 +244,7 @@ iterate <- function(f,k)
 ##' @author Simon Barthelme
 ##' @export
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' grayscale(boats) %>% imgradient("x") %>% plot
 ##' imgradient(boats,"xy") #Returns a list
 imgradient <- function(im,axes="xy",scheme=3)
@@ -277,6 +284,7 @@ imgradient <- function(im,axes="xy",scheme=3)
 ##' @param interpolation "nearest", "linear", "cubic" (default "linear")
 ##' @return a warped image
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- load.example("parrots")
 ##' #Shift image
 ##' map.shift <- function(x,y) list(x=x+10,y=y+30)
@@ -333,6 +341,7 @@ imwarp <- function(im,map,direction="forward",coordinates="absolute",boundary="d
 ##' @param cc colour coordinate (default 1)
 ##' @return an image
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' #Explicit settings of all dimensions
 ##' imdirac(c(50,50,1,1),20,20)
 ##' imdirac(c(50,50),20,20) #Implicit
@@ -404,6 +413,7 @@ imdirac <- function(dims,x,y,z=1,cc=1)
 ##' @param adjust use to adjust the automatic threshold: if the auto-threshold is at k, effective threshold will be at adjust*k (default 1)
 ##' @return a pixset with the selected pixels
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- load.example("birds")
 ##' im.g <- grayscale(im)
 ##' threshold(im.g,"15%") %>% plot
@@ -459,6 +469,7 @@ cut.kmeans <- function(x)
 ##' @return a list with fields name, format, width (pix.), height (pix.), size (bytes)
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' \dontrun{
 ##' someFiles <- dir("*.png") #Find all PNGs in directory
 ##' iminfo(someFiles[1])
@@ -522,6 +533,7 @@ iminfo <- function(fname)
 ##' @return an image
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' #These two versions are equivalent
 ##' imfill(10,10) %>% crop.borders(nx=1,ny=1)
 ##' imfill(10,10) %>% crop.borders(nPix=1)
@@ -579,6 +591,7 @@ patchmatch <- function(im1,im2,sx=1,sy=1,sz=1,nIter=10,nRad=10,occPenal,init)
 #' @param wy vector of patch heights (or single value)
 #' @return a numeric vector
 #' @examples
+#' \dontshow{cimg.limit.openmp()}
 #' im <- grayscale(boats)
 #' #Mean of an image patch centered at (10,10) of size 3x3
 #' patchstat(im,'mean',10,10,3,3)
@@ -668,6 +681,7 @@ patchstat <- function(im,expr,cx,cy,wx,wy)
 #' @param axes Axes used for the crop.
 #' @export
 #' @examples
+#' \dontshow{cimg.limit.openmp()}
 #' #Add pointless padding
 #' padded <- pad(boats,30,"xy")
 #' plot(padded)
@@ -704,6 +718,7 @@ autocrop <- function(im,color=color.at(im,1,1),axes="zyx")
 ##' @return NULL (function is used for side effects)
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' cimg.use.openmp("never") #turn off parallelisation
 ##' @export
 cimg.use.openmp <- function(mode="adaptive", nthreads=1, verbose=FALSE)
@@ -760,6 +775,7 @@ cimg.limit.openmp <- function() cimg.use.openmp(nthreads=0, verbose=TRUE)
 ##' @author Simon Barthelme
 ##' @seealso highlight
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' boats.gs <- grayscale(boats)
 ##' ct <- contours(boats.gs,nlevels=3)
 ##' plot(boats.gs)
@@ -818,6 +834,7 @@ contours.pixset <- function(x,nlevels=NULL,...)
 ##' @param im an image with 4 RGBA colour channels
 ##' @return an image with only three RGB channels and the alpha channel as attribute
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' #An image with 4 colour channels (RGBA)
 ##' im <- imfill(2,2,val=c(0,0,0,0))
 ##' #Remove fourth channel
@@ -844,6 +861,7 @@ rm.alpha <- function(im)
 ##' @return a blended image
 ##' @seealso rm.alpha
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' #Add alpha channel
 ##' alpha <- Xc(grayscale(boats))/width(boats)
 ##' boats.a <- imlist(boats,alpha) %>% imappend("c")

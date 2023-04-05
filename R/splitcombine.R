@@ -6,6 +6,7 @@
 ##' @param axis which axis to append along (e.g. "c" for colour)
 ##' @param ... further arguments to be passed to fun
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' build.im <- function(size) as.cimg(function(x,y) (x+y)/size,size,size)
 ##' liply(c(10,50,100),build.im,"y") %>% plot
 ##' @export
@@ -23,6 +24,7 @@ liply <- function(lst,fun,axis,...)
 ##' @param fun function to apply
 ##' @param ... extra arguments for function fun
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' parrots <- load.example("parrots")
 ##' ilply(parrots,"c",mean) #mean luminance per colour channel
 ##' @export
@@ -38,6 +40,7 @@ ilply <- function(im,axis,fun,...)
 ##' @param fun function to apply
 ##' @param ... extra arguments to function fun
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' idply(boats,"c",mean) #mean luminance per colour channel
 ##' @export
 idply <- function(im,axis,fun,...)
@@ -55,6 +58,7 @@ idply <- function(im,axis,fun,...)
 ##' @param fun function to apply
 ##' @param ... extra arguments to function fun
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' ##' #Normalise colour channels separately, recombine
 ##' iiply(boats,"c",function(v) (v-mean(v))/sd(v)) %>% plot 
 ##' 
@@ -75,6 +79,7 @@ iiply <- function(im,axis,fun,...)
 ## if nb = -px, with px > 1 split into blocks of px pixels.
 ##' @seealso imappend (the reverse operation)
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- as.cimg(function(x,y,z) x+y+z,10,10,5)
 ##' imsplit(im,"z") #Split along the z axis into a list with 5 elements
 ##' imsplit(im,"z",2) #Split along the z axis into two groups
@@ -153,6 +158,7 @@ imsplit.recur <- function(im,spl,nb=-1)
 ##' @param x a list of images
 ##' @param na.rm ignore NAs (default FALSE)
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im1 <- as.cimg(function(x,y) x,50,50)
 ##' im2 <- as.cimg(function(x,y) y,50,50)
 ##' im3 <- as.cimg(function(x,y) cos(x/10),50,50)
@@ -386,6 +392,7 @@ maxmin.ind <- function(L,max=TRUE)
 #' @seealso imsplit (the reverse operation)
 #' @export
 #' @examples
+#' \dontshow{cimg.limit.openmp()}
 #' imappend(list(boats,boats),"x") %>% plot
 #' imappend(list(boats,boats),"y") %>% plot
 #' purrr::map(1:3, ~imnoise(100,100)) %>% imappend("c") %>% plot
