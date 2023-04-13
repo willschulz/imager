@@ -44,10 +44,44 @@ Building R packages on Windows is a bit of a pain so you're probably better off 
 
 ### Linux
 
-To build under Linux make sure you have the headers for libX11 and libfftw3 (optionally, libtiff as well). On my Ubuntu system this seems to be enough:
+To build imager from source under Linux, make sure you have the headers for `libx11` and `libfftw3` (optionally, `libtiff` as well) installed. To determine a complete list of required system dependencies (incl. transitive ones), you can query the [SystemRequirements database](https://github.com/r-hub/sysreqsdb) via the R package [sysreqs](https://github.com/r-hub/sysreqs).
+
+<details><summary>Example R code to determine all required system dependencies for Ubuntu Linux:</summary>
+
+``` r
+# install necessary R packages
+if (!("remotes" %in% rownames(installed.packages()))) {
+    install.packages(pkgs = "remotes",
+                     repos = "https://cloud.r-project.org/")
+}
+remotes::install_github(repo = "r-hub/sysreqs",
+                        quiet = TRUE)
+
+# download imager's DESCRIPTION file (to parse it for system requirements later on)
+tmp <- tempfile(pattern = "DESCRIPTION")
+download.file(url = "https://github.com/asgr/imager/raw/master/DESCRIPTION",
+              destfile = tmp)
+
+# print system package names
+sysreqs::sysreqs(desc = tmp,
+                 # set platform identifier (here we use the one for Ubuntu Linux)
+                 # supported platforms are listed here: https://github.com/r-hub/sysreqsdb/tree/master/platforms
+                 platform = "linux-x86_64-ubuntu-gcc",
+                 soft = FALSE) |>
+    cat()
+#> libfftw3-dev libtiff-dev libxml2-dev libicu-dev libgmp-dev libpng-dev libglpk-dev
+```
+
+<sup>Created on 2023-04-13 with [reprex v2.0.2](https://reprex.tidyverse.org)</sup>
+
+The last line above indicates the required system packages.
+
+</details>
+
+On Ubuntu (or Debian) Linux you would install them via
 
 ```sh
-sudo apt-get install libfftw3-dev libX11-dev libtiff-dev
+sudo apt install libfftw3-dev libtiff-dev libxml2-dev libicu-dev libgmp-dev libpng-dev libglpk-dev
 ```
 
 ### External dependencies
