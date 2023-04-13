@@ -44,7 +44,7 @@ Building R packages on Windows is a bit of a pain so you're probably better off 
 
 ### Linux
 
-To build imager from source under Linux, make sure you have the headers for `libx11` and `libfftw3` (optionally, `libtiff` as well) installed. To determine a complete list of required system dependencies (incl. transitive ones), you can query the [SystemRequirements database](https://github.com/r-hub/sysreqsdb) via the R package [sysreqs](https://github.com/r-hub/sysreqs).
+To build imager from source under Linux, make sure you have the headers for `libfftw3`, `libx11` (if not using [Wayland](https://en.wikipedia.org/wiki/Wayland_(protocol))), and optionally `libtiff` installed. To determine a complete list of all required system dependencies (incl. transitive ones), you can query the [SystemRequirements database](https://github.com/r-hub/sysreqsdb) via the R package [sysreqs](https://github.com/r-hub/sysreqs).
 
 <details><summary>Example R code to determine all required system dependencies for Ubuntu Linux:</summary>
 
