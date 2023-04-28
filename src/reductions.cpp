@@ -279,7 +279,7 @@ NumericVector reduce_med(List x,bool na_rm=false)
       if (na_rm) {
         for (auto &image: L) {
           auto value = image(x, y, z, c);
-          if (!R_IsNA(value)) {
+          if (!ISNAN(value)) {
             *vec_end = value;
             vec_end++;
           }
