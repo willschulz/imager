@@ -39,6 +39,7 @@ utils::globalVariables(c(".", "%>%","x","y","z","cc","value"))
 ##' @return an object of class cimg
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' cimg(array(1,c(10,10,5,3)))
 ##' @export
 cimg <- function(X)
@@ -64,6 +65,7 @@ is.cimg <- function(x) is(x,"cimg")
 ##' @param index frame index 
 ##' @name cimg.extract
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' #Extract the red channel from the boats image, then the first row, plot
 ##' rw <- R(boats) %>% imrow(10)
 ##' plot(rw,type="l",xlab="x",ylab="Pixel value")
@@ -106,6 +108,7 @@ NULL
 ##' @seealso display, which is much faster, as.raster, which converts images to R raster objects
 ##' @export
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' plot(boats,main="Boats") 
 ##' plot(boats,axes=FALSE,xlab="",ylab="")
 ##'
@@ -259,6 +262,7 @@ ldim <- function(v)
 ##' @return returns c(dim(im)[1:3],1)
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' imnoise(dim=gsdim(boats))
 ##' @export
 gsdim <- function(im)
@@ -309,6 +313,7 @@ frame <- function(im,index)
 ##' @seealso frames
 ##' @return a list of channels
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' channels(boats)
 ##' channels(boats,1:2)
 ##' channels(boats,1:2,drop=TRUE) %>% str #A list of 2D arrays
@@ -406,6 +411,7 @@ B <- function(im) { channel(im,3) }
 ##' @return pixel values
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- as.cimg(function(x,y) x+y,50,50)
 ##' at(im,10,1)
 ##' at(im,10:12,1)
@@ -429,6 +435,7 @@ at <- function(im,x,y,z=1,cc=1)
 
 ##' @describeIn at return value of all colour channels at a location
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' color.at(boats,x=10,y=10)
 ##' @export
 color.at <- function(im,x,y,z=1)
@@ -438,6 +445,7 @@ color.at <- function(im,x,y,z=1)
 
 ##' @describeIn at set value of all colour channels at a location
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- boats
 ##' color.at(im,x=10,y=10) <- c(255,0,0)
 ##' #There should now be a red dot
@@ -486,6 +494,7 @@ all.names <- function(cl)
 ##' @return an image with some parts cut out
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' parrots <- load.example("parrots")
 ##' imsub(parrots,x < 30) #Only the first 30 columns
 ##' imsub(parrots,y < 30) #Only the first 30 rows
@@ -564,6 +573,7 @@ subs <- function(im,cl,consts,envir=parent.frame())
 ##' @param x an array
 ##' @export
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' A <- array(1:9,c(3,1,3)) #3D array with one flat dimension
 ##' A %>% squeeze #flat dimension removed
 squeeze <- function(x) {
@@ -580,6 +590,7 @@ squeeze <- function(x) {
 ##' @return an image of class cimg
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' grayscale(boats) #No more colour channels
 ##' add.colour(grayscale(boats)) #Image has depth = 3 (but contains only grays)
 ##' @export
@@ -621,6 +632,7 @@ inda <- list('x'=1,'y'=2,'z'=3,'c'=4)
 ##' @return a padded image
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' pad(boats,20,"xy") %>% plot
 ##' pad(boats,20,pos=-1,"xy") %>% plot
 ##' pad(boats,20,pos=1,"xy") %>% plot
@@ -704,6 +716,7 @@ get.mask <- function(im,expr)
 ##' @return a cimg image corresponding to the contents of the current plotting window
 ##' @author Simon Barthelme
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' ##interactive only:
 ##' ##plot(1:10)
 ##' ###Make a plot of the plot
@@ -736,6 +749,7 @@ capture.plot <- function()
 ##' @param ind an index
 ##' @seealso imdraw
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' boats.cp <- boats
 ##' #Set the green channel in the boats image to 0
 ##' G(boats.cp) <- 0
@@ -832,6 +846,7 @@ NULL
 ##' @name imager.subset
 ##' @seealso imsub, which provides a more convenient interface, autocrop, imdraw
 ##' @examples
+##' \dontshow{cimg.limit.openmp()}
 ##' im <- imfill(4,4)
 ##' dim(im) #4 dimensional, but the last two ones are singletons
 ##' im[,1,,] <- 1:4 #Assignment the standard way
@@ -939,6 +954,7 @@ NULL
 #' @param ... ignored
 #' @export
 #' @examples
+#' \dontshow{cimg.limit.openmp()}
 #' ##Not run: interactive only 
 #' ##display(boats,TRUE) #Normalisation on 
 #' ##display(boats/2,TRUE) #Normalisation on, so same as above
