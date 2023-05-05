@@ -186,26 +186,23 @@ cimg2im <- function(img,W=NULL)
     }
 
 ##' Convert an image in spatstat format to an image in cimg format
-##'
-##' as.cimg.im is an alias for the same function
 ##' 
-##' @param img a spatstat image
+##' @param obj a spatstat image
+##' @param ... optional arguments
 ##' @return a cimg image
 ##' @author Simon Barthelme
 ##' @export
-im2cimg <- function(img)
+as.cimg.im <- function(obj, ...)
     {
         if (requireNamespace("spatstat.geom",quietly=TRUE))
             {
-                spatstat.geom::as.matrix.im(img) %>% as.cimg %>% imrotate(-90)
+                spatstat.geom::as.matrix.im(obj) %>% as.cimg %>% imrotate(-90)
             }
         else
             {
                 stop("The spatstat.geom package is required")
             }
     }
-
-as.cimg.im <- im2cimg
 
 ##' Convert to cimg object
 ##'

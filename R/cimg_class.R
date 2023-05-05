@@ -187,17 +187,17 @@ plot.cimg <- function(x,frame,xlim=c(1,width(x)),ylim=c(height(x),1),xlab="x",yl
 }
 
 #Plots one-dimensional images
-plot.singleton <- function(im,...)
+plot.singleton <- function(x,...)
 {
-    varying <- if (width(im) == 1) "y" else "x"
-    l <- max(dim(im)[1:2])
-    if (spectrum(im) == 1)
+    varying <- if (width(x) == 1) "y" else "x"
+    l <- max(dim(x)[1:2])
+    if (spectrum(x) == 1)
     {
-        plot(1:l,as.vector(im),xlab=varying,ylab="Pixel value",type="l",...)
+        plot(1:l,as.vector(x),xlab=varying,ylab="Pixel value",type="l",...)
     }
-    else if (spectrum(im) ==3)
+    else if (spectrum(x) ==3)
     {
-        ylim <- range(im)
+        ylim <- range(x)
         
         plot(1:l,1:l,type="n",xlab=varying,ylim=ylim,ylab="Pixel value",...)
         cols <- c("red","green","blue")
@@ -205,7 +205,7 @@ plot.singleton <- function(im,...)
         for (i in 1:3)
         {
 
-            graphics::lines(1:l,as.vector(channel(im,i)),type="l",col=cols[i])
+            graphics::lines(1:l,as.vector(channel(x,i)),type="l",col=cols[i])
         }
     }
     else
@@ -458,8 +458,9 @@ color.at <- function(im,x,y,z=1)
     }
 
 
-all.names <- function(cl)
+all.names <- function(..., na.rm)
     {
+  cl = list(...)[[1]]
         if (length(cl) == 0)
             {
                 NULL
