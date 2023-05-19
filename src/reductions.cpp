@@ -239,6 +239,8 @@ static double _get_median(std::vector<double>::iterator begin, std::vector<doubl
   if (!na_rm && std::any_of(begin, end, R_IsNA))
     return NA_REAL;
   auto size = std::distance(begin, end);
+  if (size == 0)
+    return NA_REAL;
   auto n = size / 2;
   std::nth_element(begin, begin + n, end);
   auto value_in_middle = *(begin + n);
