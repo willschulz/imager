@@ -278,7 +278,7 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
   
   auto value_in_lo_bin = *std::max_element(begin, begin + n);
 
-  return value_in_lo_bin * wgt + value_in_hi_bin * (1 - wgt);
+  return value_in_hi_bin * wgt + value_in_lo_bin * (1 - wgt);
 }
 
 
