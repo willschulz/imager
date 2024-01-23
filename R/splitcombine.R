@@ -259,6 +259,10 @@ enorm <- function(x) check.reduce(x) %>% reduce_list(5)
 ##' @export
 parmed <- function(x,na.rm=FALSE) check.reduce(x) %>% reduce_med(na_rm=na.rm)
 
+##' @describeIn imager.combine Parallel Quantile over images
+##' @export
+parquan <- function(x,quan=0.5,na.rm=FALSE) check.reduce(x) %>% reduce_med(na_rm=na.rm, doquan=TRUE, quanval=quan)
+
 ##' @describeIn imager.combine Variance
 ##' @export
 parvar <- function(x,na.rm=FALSE)

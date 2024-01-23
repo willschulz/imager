@@ -12,6 +12,7 @@
 \alias{parmin}
 \alias{enorm}
 \alias{parmed}
+\alias{parquan}
 \alias{parvar}
 \alias{parsd}
 \alias{parall}
@@ -43,6 +44,8 @@ parmin(x, na.rm = FALSE)
 enorm(x)
 
 parmed(x, na.rm = FALSE)
+
+parquan(x, quan = 0.5, na.rm = FALSE)
 
 parvar(x, na.rm = FALSE)
 
@@ -104,6 +107,8 @@ To correctly use multiple threads users should set \option{nthreads} in \code{\l
 \item \code{enorm()}: Euclidean norm (i.e. sqrt(A^2 + B^2 + ...))
 
 \item \code{parmed()}: Parallel Median over images
+
+\item \code{parquan()}: Parallel Quantile over images
 
 \item \code{parvar()}: Variance
 
