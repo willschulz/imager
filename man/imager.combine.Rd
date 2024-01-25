@@ -74,6 +74,8 @@ parrank(x, increasing = TRUE)
 
 \item{w}{weights (must be the same length as the list)}
 
+\item{quan}{quantile level for parquan, default of 0.5 returns the median}
+
 \item{increasing}{if TRUE, sort in increasing order (default TRUE)}
 }
 \description{

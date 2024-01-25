@@ -156,6 +156,7 @@ imsplit.recur <- function(im,spl,nb=-1)
 ##' To correctly use multiple threads users should set \option{nthreads} in \code{\link{cimg.use.openmp}}. You also need to be careful that this is not higher than the value in the system environment variable OMP_THREAD_LIMIT (this can be checked with Sys.getenv('OMP_THREAD_LIMIT')). The OMP_THREAD_LIMIT thread limit usually needs to be correctly set before launching R, so using Sys.setenv once a session has started is not certain to work.
 ##' @name imager.combine
 ##' @param x a list of images
+##' @param quan quantile level for parquan, default of 0.5 returns the median
 ##' @param na.rm ignore NAs (default FALSE)
 ##' @examples
 ##' \dontshow{cimg.limit.openmp()}
