@@ -253,7 +253,7 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
 {
   if (!na_rm && std::any_of(begin, end, R_IsNA))
     return NA_REAL;
-  auto size = std::distance(begin, end);
+  auto size = std::distance(begin, end); //size is effectively R length for vector elements
   if (size == 0)
     return NA_REAL;
   
@@ -261,7 +261,9 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
     return *std::max_element(begin, end);
   }
   
-  std::size_t n = ceil((double)(size - 1) * quan);  
+  double size_frac = (double)(size - 1) * quan; // fraction of size domain we want (-1 since the number of jumps is 1 less than length)
+  
+  std::size_t n = ceil(size_frac); //n cannot be smaller than size_frac
   
   if(n == 0){ // just return the min element
     return *std::min_element(begin, end);
@@ -270,7 +272,7 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
   std::nth_element(begin, begin + n, end);
   auto value_in_hi_bin = *(begin + n);
   
-  double wgt = 1 + (double)(size - 1) * quan - n;
+  double wgt = 1 - n + size_frac; //n cannot be smaller than size_frac and at most 1 less, so 0 <= wgt <= 1
   
   if(wgt == 1){
     return value_in_hi_bin;
