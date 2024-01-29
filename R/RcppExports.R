@@ -705,8 +705,8 @@ reduce_list2 <- function(x, summary = 0L) {
     .Call(`_imager_reduce_list2`, x, summary)
 }
 
-reduce_med <- function(x, na_rm = FALSE, doquan = FALSE, quanval = 0.5) {
-    .Call(`_imager_reduce_med`, x, na_rm, doquan, quanval)
+reduce_med <- function(x, na_rm = FALSE, doquan = FALSE, prob = 0.5) {
+    .Call(`_imager_reduce_med`, x, na_rm, doquan, prob)
 }
 
 psort <- function(x, increasing = TRUE) {

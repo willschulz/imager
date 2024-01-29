@@ -1207,16 +1207,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // reduce_med
-NumericVector reduce_med(List x, bool na_rm, bool doquan, double quanval);
-RcppExport SEXP _imager_reduce_med(SEXP xSEXP, SEXP na_rmSEXP, SEXP doquanSEXP, SEXP quanvalSEXP) {
+NumericVector reduce_med(List x, bool na_rm, bool doquan, double prob);
+RcppExport SEXP _imager_reduce_med(SEXP xSEXP, SEXP na_rmSEXP, SEXP doquanSEXP, SEXP probSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< List >::type x(xSEXP);
     Rcpp::traits::input_parameter< bool >::type na_rm(na_rmSEXP);
     Rcpp::traits::input_parameter< bool >::type doquan(doquanSEXP);
-    Rcpp::traits::input_parameter< double >::type quanval(quanvalSEXP);
-    rcpp_result_gen = Rcpp::wrap(reduce_med(x, na_rm, doquan, quanval));
+    Rcpp::traits::input_parameter< double >::type prob(probSEXP);
+    rcpp_result_gen = Rcpp::wrap(reduce_med(x, na_rm, doquan, prob));
     return rcpp_result_gen;
 END_RCPP
 }

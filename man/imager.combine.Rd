@@ -45,7 +45,7 @@ enorm(x)
 
 parmed(x, na.rm = FALSE)
 
-parquan(x, quan = 0.5, na.rm = FALSE)
+parquan(x, prob = 0.5, na.rm = FALSE)
 
 parvar(x, na.rm = FALSE)
 
@@ -74,7 +74,7 @@ parrank(x, increasing = TRUE)
 
 \item{w}{weights (must be the same length as the list)}
 
-\item{quan}{quantile level for parquan, default of 0.5 returns the median}
+\item{prob}{probability level for parquan, default of 0.5 returns the median}
 
 \item{increasing}{if TRUE, sort in increasing order (default TRUE)}
 }

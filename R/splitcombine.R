@@ -156,7 +156,7 @@ imsplit.recur <- function(im,spl,nb=-1)
 ##' To correctly use multiple threads users should set \option{nthreads} in \code{\link{cimg.use.openmp}}. You also need to be careful that this is not higher than the value in the system environment variable OMP_THREAD_LIMIT (this can be checked with Sys.getenv('OMP_THREAD_LIMIT')). The OMP_THREAD_LIMIT thread limit usually needs to be correctly set before launching R, so using Sys.setenv once a session has started is not certain to work.
 ##' @name imager.combine
 ##' @param x a list of images
-##' @param quan quantile level for parquan, default of 0.5 returns the median
+##' @param prob probability level for parquan, default of 0.5 returns the median
 ##' @param na.rm ignore NAs (default FALSE)
 ##' @examples
 ##' \dontshow{cimg.limit.openmp()}
@@ -262,12 +262,12 @@ parmed <- function(x,na.rm=FALSE) check.reduce(x) %>% reduce_med(na_rm=na.rm)
 
 ##' @describeIn imager.combine Parallel Quantile over images
 ##' @export
-parquan <- function(x,quan=0.5,na.rm=FALSE)
+parquan <- function(x,prob=0.5,na.rm=FALSE)
 {
-    if(quan < 0 | quan > 1){
-        stop('quan must be between 0-1')
+    if(prob < 0 | prob > 1){
+        stop('prob must be between 0-1')
     }
-    check.reduce(x) %>% reduce_med(na_rm=na.rm, doquan=TRUE, quanval=quan)
+    check.reduce(x) %>% reduce_med(na_rm=na.rm, doquan=TRUE, prob=prob)
 }
 
 ##' @describeIn imager.combine Variance
