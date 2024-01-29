@@ -261,7 +261,8 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
     return *std::max_element(begin, end);
   }
   
-  std::size_t n = ceil((double)(size - 1) * quan);  
+  double size_quan = (double)(size - 1) * quan; // size if like R length, so 1 larger than the diff on the limits
+  std::size_t n = ceil(size_quan);  
   
   if(n == 0){ // just return the min element
     return *std::min_element(begin, end);
@@ -270,7 +271,7 @@ static double _get_quantile(std::vector<double>::iterator begin, std::vector<dou
   std::nth_element(begin, begin + n, end);
   auto value_in_hi_bin = *(begin + n);
   
-  double wgt = 1 + (double)(size - 1) * quan - n;
+  double wgt = 1 - ((double)n - size_quan); // the brackets matter for ensuring the correct type conversion
   
   if(wgt == 1){
     return value_in_hi_bin;
